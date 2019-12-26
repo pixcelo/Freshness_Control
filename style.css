@@ -1,0 +1,54 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.wrapper {
+  width:960px;
+  margin:0px auto;
+  }
+  
+  h1 {
+    color: #68CD8C;
+  }
+
+  .box {
+    display: flex;
+    margin: 0 auto;
+  }
+
+  .logo {
+    display: block;
+    width: 54px;
+    height: 59px;
+    margin: 8px 16px;
+  }
+  
+  .sidebar {
+  float:left;
+  width:198px;
+  height:498px;
+  background-color: #68CD8C;
+  margin:10px 10px 10px 0px;
+  }
+
+  .sidebar-p {
+    color: #fff;
+    margin-left: 8px;
+  }
+  
+  .contents {
+  float:left;
+  width:748px;
+  height:498px;
+  margin:10px 0px 10px 0px;
+  }
+  
+  footer {
+  clear:both;
+
+  text-align: center;
+  }
+  
+  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+  }
