@@ -7,11 +7,11 @@ body {
   margin:0px auto;
   }
   
-  h1 {
+  h1, .contents-list {
     color: #68CD8C;
   }
 
-  .box {
+  .logo-box {
     display: flex;
     margin: 0 auto;
   }
@@ -31,21 +31,32 @@ body {
   margin:10px 10px 10px 0px;
   }
 
-  .sidebar-p {
-    color: #fff;
+  .side-box {
     margin-left: 8px;
   }
-  
+
+  .sidebar-p {
+    color: #fff;
+  }
+
+  input {
+    margin-bottom: 8px;
+  }
+
   .contents {
   float:left;
   width:748px;
   height:498px;
-  margin:10px 0px 10px 0px;
+  margin:25px 0px 50px 0px;
   }
-  
+
+  .item {
+    display: inline;
+    margin-right: 8px;
+  }
+
   footer {
   clear:both;
-
   text-align: center;
   }
   
