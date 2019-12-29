@@ -32,9 +32,10 @@
             <input type="date" name="date" placeholder="賞味期限">
             <input type="text" name="store"  placeholder="店舗"><br>
             <button type="submit">登録</button><br><br>
+            
           </form>
 
-          <a href="edit.php"><button type="submit">編集モード</button></a>
+          
       </div>
     </div>
     
@@ -49,7 +50,7 @@
           require('connect.php'); 
 
           $items = $pdo->query('SELECT * FROM items ORDER BY date');
-          print('<tr>' . '<th>品名</th>' .'<th>数量</th>'.'<th>賞味期限</th>'.'<th>店舗</th>'.'<th>残り日数</th>'.'</tr>');
+  
           ?>
 
           <?php while ($item = $items->fetch()): ?>
@@ -62,13 +63,35 @@
             $interval = $limit->diff($today);
             $expiration_date = $interval->format('%a日');
             
-            print('<tr>'.'<td>'.$item['name'].'</td>'.'<td>'.$item['quantity'].'</td>'.'<td>'.$item['date'].'</td>'.'<td>'.$item['store'].'</td>'.'<td>'.$expiration_date.'</td>'.'</tr>'); 
+          
             ?>
-
+            
+              <table>
+                <tr>
+                  <th>id</th>
+                  <th>品名</th>
+                  <th>数量</th>
+                  <th>賞味期限</th>
+                  <th>店舗</th>
+                  <th>残り日数</th>
+                </tr>
+                <form method="post" action="update.php">
+                <tr>
+                  <td><?php if( !empty($item['id']) ){ print($item['id']); } ?></td>
+                  <td><input type="text" name="name" value="<?php if( !empty($item['name']) ){ print($item['name']); } ?>" ></td>
+                  <td><input type="text" name="quantity" value="<?php if( !empty($item['quantity']) ){ print($item['quantity']); } ?>" ></td>
+                  <td><input type="text" name="date" value="<?php if( !empty($item['date']) ){ print($item['date']); } ?>" ></td>
+                  <td><input type="text" name="store" value="<?php if( !empty($item['store']) ){ print($item['store']); } ?>" ></td>
+                  <td><?php print($expiration_date); ?></td>
+                </tr>
+                
+              </table>
+            <a href="index.php"><button type="button">キャンセル</button></a>
+            <input type="hidden" name="id" value="<?php print($item['id']) ?>">
+            <button type="submit">更新</button>
+            </form>
           <?php endwhile; ?>
-        </table>
       </article>
-
     </div>
 
   </div>

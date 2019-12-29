@@ -24,11 +24,11 @@ body {
   }
   
   .sidebar {
-  float:left;
-  width:198px;
-  height:498px;
+  float: left;
+  width: 198px;
+  height: 498px;
   background-color: #68CD8C;
-  margin:10px 10px 10px 0px;
+  margin: 10px 10px 10px 0px;
   }
 
   .side-box {
@@ -44,11 +44,10 @@ body {
   }
 
   .contents {
-  float:left;
-  width:748px;
-  height:498px;
-  margin:25px 0px 50px 0px;
-  position: relative;
+  float: left;
+  width: 748px;
+  height: 498px;
+  margin: 25px 0px 50px 0px;
   }
 
   /* テーブル */
@@ -71,11 +70,10 @@ body {
   }
   /* テーブルここまで */
 
-  footer {
+  /* footer {
   clear:both;
   text-align: center;
   width: 100%;
-  position: absolute;
-  bottom: 0; 
-  }
+
+  } */
   
