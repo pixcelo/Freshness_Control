@@ -13,40 +13,27 @@
 <body>
   
   <?php  
-    try {
-      $pdo = new PDO(
-        'mysql:dbname=test_freshness;host=localhost;charset=utf8mb4',
-        'root',
-        '');
+    require('connect.php'); 
+    
+    // 入力値を取得
+    $name = $_POST['name'];
+    $quantity = $_POST['quantity'];
+    $date = $_POST['date'];
+    $store = $_POST['store'];
+    
+    $stmt = $pdo->prepare('INSERT INTO items (name, quantity, date, store) VALUES (:name, :quantity, :date, :store)');
 
-      // PDOのエラーレポートを表示
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // 挿入する値を配列に格納
+    $params = array(':name' => $name, ':quantity' => $quantity, ':date' => $date, ':store' => $store);
+    
+    //挿入する値が入った変数をexecuteにセットしてSQLを実行
+    $stmt->execute($params); 
 
-      // 入力値を取得
-      $name = $_POST['name'];
-      $quantity = $_POST['quantity'];
-      $date = $_POST['date'];
-      $store = $_POST['store'];
-      
-      $stmt = $pdo->prepare('INSERT INTO items (name, quantity, date, store) VALUES (:name, :quantity, :date, :store)');
-
-      // 挿入する値を配列に格納
-      $params = array(':name' => $name, ':quantity' => $quantity, ':date' => $date, ':store' => $store);
-      
-      //挿入する値が入った変数をexecuteにセットしてSQLを実行
-      $stmt->execute($params); 
-
-      // リダイレクト
-      header('Location: index.php');
-      exit();
-
-    } catch(PDOException $e) {
-      echo 'DB接続エラー: ' . $e->getMessage();
-    }
+    // リダイレクト
+    header('Location: index.php');
+    exit();
 
   ?>
-
-  <a href="index.php">戻る</a>
 
   <footer>
     <p><small>&copy; Freshness</small></p>

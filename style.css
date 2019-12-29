@@ -3,8 +3,8 @@ body {
 }
 
 .wrapper {
-  width:960px;
-  margin:0px auto;
+  width: 960px;
+  margin: 0 auto;
   }
   
   h1, .contents-list {
@@ -48,18 +48,34 @@ body {
   width:748px;
   height:498px;
   margin:25px 0px 50px 0px;
+  position: relative;
   }
 
-  .item {
-    display: inline;
-    margin-right: 8px;
+  /* テーブル */
+  table {
+    border-collapse: collapse;
+    margin-top: 10px;
   }
+  table th, table td {
+    border: solid 1px #68CD8C;
+  }
+
+  table th {
+    padding: 10px;
+    background: #68CD8C;
+    color: #fff;
+  }
+
+  table td {
+    padding: 3px 10px
+  }
+  /* テーブルここまで */
 
   footer {
   clear:both;
   text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0; 
   }
   
-  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-  display: block;
-  }

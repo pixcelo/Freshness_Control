@@ -11,7 +11,6 @@
 </head>
 <script>
 
-
 </script>
 <body>
   
@@ -38,54 +37,37 @@
     </div>
     
     <div class="contents">
-    <a class="contents-list">list</a>
-    
-    <?php
-      try {
-        $pdo = new PDO(
-          'mysql:dbname=test_freshness;host=localhost;charset=utf8mb4',
-          'root',
-          '');
-  
-        // PDOのエラーレポートを表示
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $items = $pdo->query('SELECT * FROM items ORDER BY date');
+      <a class="contents-list">item list</a>
 
-      
-      } catch(PDOException $e) {
-        echo 'DB接続エラー: ' . $e->getMessage();
-        var_dump($e);
-      }
-    ?>
+      <?php require('connect.php'); ?>
 
-    <article>
-      <?php while ($item = $items->fetch()): ?>
-        <p class="item"><?php print('品名：' .$item['name']); ?></p>
-        <p class="item"><?php print('数量：' .$item['quantity']); ?></p>
-        <time class="item"><?php print('賞味期限：' .$item['date']); ?></time>
-        <p class="item"><?php print('店舗：' .$item['store']); ?></p>
-        <?php        
-        //指定日時
-        date_default_timezone_set('Asia/Tokyo');
-        $today = new Datetime('now');
-        $limit = new Datetime($item['date']);
-        $interval = $limit->diff($today);
+      <article>
+        <table>
+        <?php print('<tr>' . '<th>品名</th>' .'<th>数量</th>'.'<th>賞味期限</th>'.'<th>店舗</th>'.'<th>残り日数</th>'.'</tr>'); ?>
+          <?php while ($item = $items->fetch()): ?>
+            
+            <?php        
+            //指定日時
+            date_default_timezone_set('Asia/Tokyo');
+            $today = new Datetime('now');
+            $limit = new Datetime($item['date']);
+            $interval = $limit->diff($today);
 
-        echo $interval->format('残り%a日');
-        ?>
-        <br>
-        <hr>
-      <?php endwhile; ?>
-    </article>
+            $expiration_date = $interval->format('%a日');
+            ?>
+
+            <?php print('<tr>'.'<td>'.$item['name'].'</td>'.'<td>'.$item['quantity'].'</td>'.'<td>'.$item['date'].'</td>'.'<td>'.$item['store'].'</td>'.'<td>'.$expiration_date.'</td>'.'</tr>'); ?>
+
+         <?php endwhile; ?>
+      </article>
 
     </div>
 
-    <footer>
+  </div>
+
+  <footer>
       <p><small>&copy; Freshness</small></p>
-    </footer>
-    
-    </div>
+  </footer>
   
 </body>
 </html>
