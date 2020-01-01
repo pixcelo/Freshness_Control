@@ -22,7 +22,7 @@
         <h1>Freshness Control</h1>
       </div>
     </header>
-
+    
     <div class="contents">
       <a class="contents-list">item list</a>
 
@@ -59,20 +59,24 @@
                   <th>店舗</th>
                   <th>残り日数</th>
                 </tr>
-                <form method="post" action="update.php">
+                <form method="post" action="delete.php">
                 <tr>
                   <td><?php if( !empty($item['id']) ){ print($item['id']); } ?></td>
-                  <td><input type="text" name="name" value="<?php if( !empty($item['name']) ){ print($item['name']); } ?>" ></td>
-                  <td><input type="text" name="quantity" value="<?php if( !empty($item['quantity']) ){ print($item['quantity']); } ?>" ></td>
-                  <td><input type="text" name="date" value="<?php if( !empty($item['date']) ){ print($item['date']); } ?>" ></td>
-                  <td><input type="text" name="store" value="<?php if( !empty($item['store']) ){ print($item['store']); } ?>" ></td>
+                  <td><input type="text" name="name" value="<?php if( !empty($item['name']) ){ print($item['name']); } ?>" disabled></td>
+                  <td><input type="text" name="quantity" value="<?php if( !empty($item['quantity']) ){ print($item['quantity']); } ?>" disabled></td>
+                  <td><input type="text" name="date" value="<?php if( !empty($item['date']) ){ print($item['date']); } ?>" disabled></td>
+                  <td><input type="text" name="store" value="<?php if( !empty($item['store']) ){ print($item['store']); } ?>" disabled></td>
                   <td><?php print($expiration_date); ?></td>
                 </tr>
                 
               </table>
             <a href="index.php"><button type="button" class="btn">キャンセル</button></a>
             <input type="hidden" name="id" value="<?php print($item['id']) ?>">
-            <button type="submit" class="btn">更新</button>
+            <input type="hidden" name="name" value="<?php print($item['name']) ?>">
+            <input type="hidden" name="quantity" value="<?php print($item['quantity']) ?>">
+            <input type="hidden" name="date" value="<?php print($item['date']) ?>">
+            <input type="hidden" name="store" value="<?php print($item['store']) ?>">
+            <button type="submit" class="btn btn-delete">削除</button>
             </form>
           <?php endwhile; ?>
       </article>

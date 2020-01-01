@@ -27,21 +27,20 @@
       <div class="side-box">
         <p class="sidebar-p">input form</p>
           <form class="input_form" action="input.php" method="post">
-            <input type="text" name="name" placeholder="品名">
-            <input type="text" name="quantity" placeholder="数量">
-            <input type="date" name="date" placeholder="賞味期限">
-            <input type="text" name="store"  placeholder="店舗"><br>
-            <button type="submit">登録</button><br><br>
+            <input type="text" name="name" placeholder="品名" required>
+            <input type="text" name="quantity" placeholder="数量" required>
+            <input type="date" name="date" placeholder="賞味期限" required>
+            <input type="text" name="store"  placeholder="店舗" required><br>
+            <button type="submit" class="btn btn-input">登録</button><br><br>
           </form>
 
-          <a href="edit.php"><button type="submit">編集モード</button></a>
+          <a href="edit.php"><button type="submit" class="btn btn-edit">編集</button></a><br><br>
+          <a href="delete_form.php"><button type="submit" class="btn btn-delete">削除</button></a>
       </div>
     </div>
     
     <div class="contents">
       <a class="contents-list">item list</a>
-
-      
 
       <article>
         <table>
