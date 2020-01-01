@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="description" content="賞味期限を管理するためのアプリです。">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="images/teapot.png">
-  <title>Freshness</title>
-</head>
-<body>
-  
-  <?php  
+<?php  
     require('connect.php'); 
     
     // 入力値を取得
@@ -30,13 +16,7 @@
     $stmt->execute($params); 
 
     // リダイレクト
-    header('Location: index.php');
+    header('Location:index.php');
     exit();
 
-  ?>
-
-  <footer>
-    <p><small>&copy; Freshness</small></p>
-  </footer>
-</body>
-</html>
+?>
