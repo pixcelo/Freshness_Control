@@ -1,30 +1,9 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="images/teapot.png">
-  <title>Freshness</title>
-</head>
-<script>
-
-</script>
-<body>
-  
-  <div class="l_wrapper">
-
-    <header>
-        <img class="header__logo" src="images/teapot.png" alt="急須">
-        <h1>KEEP FRESH</h1>
-    </header>
+<?php require('header.php'); ?>
     
     <div class="l_contents">
 
       <article>
-        <table>
+        
           <?php
           require('connect.php'); 
           $items = $pdo->query('SELECT * FROM items ORDER BY date');
@@ -75,9 +54,5 @@
 
   </div>
 
-  <footer>
-      <!-- <p><small>&copy; Freshness</small></p> -->
-  </footer>
-  
 </body>
 </html>
