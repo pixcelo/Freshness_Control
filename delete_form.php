@@ -17,16 +17,12 @@
   <div class="wrapper">
 
     <header>
-      <div class="logo-box">
-        <img class="logo" src="images/teapot.png" alt="急須">
+        <img class="header__logo" src="images/teapot.png" alt="急須">
         <h1>Freshness Control</h1>
-      </div>
     </header>
     
-    <div class="contents">
-      <a class="contents-list">item list</a>
-
-      
+    <div class="l_contents">
+      <a class="contents__list">item list</a>
 
       <article>
         <table>
@@ -70,13 +66,13 @@
                 </tr>
                 
               </table>
-            <a href="index.php"><button type="button" class="btn">キャンセル</button></a>
+            <a href="index.php"><button type="button" class="c-btn">キャンセル</button></a>
             <input type="hidden" name="id" value="<?php print($item['id']) ?>">
             <input type="hidden" name="name" value="<?php print($item['name']) ?>">
             <input type="hidden" name="quantity" value="<?php print($item['quantity']) ?>">
             <input type="hidden" name="date" value="<?php print($item['date']) ?>">
             <input type="hidden" name="store" value="<?php print($item['store']) ?>">
-            <button type="submit" class="btn btn-delete">削除</button>
+            <button type="submit" class="c-btn c-btn--delete">削除</button>
             </form>
           <?php endwhile; ?>
       </article>

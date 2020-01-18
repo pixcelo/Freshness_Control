@@ -1,44 +1,31 @@
-body {
-  font-family: 'Montserrat', sans-serif;
-}
-
-.wrapper {
+.l_wrapper {
   width: 960px;
   margin: 0 auto;
-  }
-  
-h1, .contents-list, .sidebar-p {
-  color: #68CD8C;
 }
 
-.logo-box {
+.l_header {
   display: flex;
-  margin: 0 auto;
 }
 
-.logo {
+.header__logo {
   display: block;
   width: 54px;
   height: 59px;
   margin: 8px 16px;
 }
 
-.sidebar {
+.l_sidebar {
 float: left;
 width: 198px;
 height: 498px;
 margin: 10px 10px 10px 0px;
 }
 
-.side-box {
-  margin-left: 8px;
-}
-
 input {
   margin-bottom: 8px;
 }
 
-.contents {
+.l_contents {
 float: left;
 width: 748px;
 height: 498px;
@@ -66,7 +53,7 @@ table td {
 /* テーブルここまで */
 
 /* ボタン */
-.btn {
+.c-btn {
   background-color: #68CD8C;
   color: #fff;
   border: none;
@@ -79,7 +66,7 @@ table td {
   border-radius: 4px;
 }
 
-.btn-delete {
+.c-btn--delete {
   background-color: #C84440;
 }
 
@@ -87,3 +74,59 @@ table td {
   display: none;
 }
   
+/* サイドバー */
+
+.l_sidebar {
+  padding:16px;
+  width:220px;
+  height:100vh;
+  position:fixed;
+  background-color:#fff;
+  top:0;
+  left:-220px;
+  z-index:4;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
+  box-sizing:border-box;
+  display:none;
+}
+
+.l_sidebar__inner {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.l_sidebar__icon {
+  font-size:28px;
+  color:#654;
+}
+
+.l_sidebar__txt {
+  font-size:18px;
+  margin-top:16px;
+  margin-left:8px;
+}
+.l_sidebar-bg {
+  background-color:#558;
+  width:100vw;
+  height:100vh;
+  opacity:0;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:3;
+  display:none;
+}
+
+/* responsive */
+@media (max-width: 600px) {
+
+.l_wrapper{
+  max-width: 100%;
+}
+
+.l_contents {
+  max-width: 100%;
+  }
+
+}

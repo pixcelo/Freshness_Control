@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="images/teapot.png">
@@ -17,16 +16,12 @@
   <div class="wrapper">
 
     <header>
-      <div class="logo-box">
-        <img class="logo" src="images/teapot.png" alt="急須">
+        <img class="header__logo" src="images/teapot.png" alt="急須">
         <h1>Freshness Control</h1>
-      </div>
     </header>
 
-    <div class="contents">
-      <a class="contents-list">item list</a>
-
-      
+    <div class="l_contents">
+      <a class="contents__list">item list</a>
 
       <article>
         <table>
@@ -45,9 +40,7 @@
             $today = new Datetime('now');
             $limit = new Datetime($item['date']);
             $interval = $limit->diff($today);
-            $expiration_date = $interval->format('%a日');
-            
-          
+            $expiration_date = $interval->format('%a日'); 
             ?>
             
               <table>
@@ -70,9 +63,9 @@
                 </tr>
                 
               </table>
-            <a href="index.php"><button type="button" class="btn">キャンセル</button></a>
+            <a href="index.php"><button type="button" class="c-btn">キャンセル</button></a>
             <input type="hidden" name="id" value="<?php print($item['id']) ?>">
-            <button type="submit" class="btn">更新</button>
+            <button type="submit" class="c-btn">更新</button>
             </form>
           <?php endwhile; ?>
       </article>
