@@ -29,7 +29,7 @@ input {
 float: left;
 width: 748px;
 height: 498px;
-margin: 25px 0px 50px 0px;
+margin-bottom: 50px;
 }
 
 /* テーブル */
@@ -50,6 +50,8 @@ table th {
 table td {
   padding: 3px 10px
 }
+ 
+
 /* テーブルここまで */
 
 /* ボタン */
@@ -68,6 +70,17 @@ table td {
 
 .c-btn--delete {
   background-color: #C84440;
+}
+
+.c-btn--update {
+  background-color: skyblue;
+}
+
+.header__icon {
+  font-size: 40px;
+}
+.header__icon+p {
+  font-size: 60%;
 }
 
 .none {

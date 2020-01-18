@@ -14,14 +14,17 @@
   
   <div class="l_wrapper">
 
-    <header class="l_header">
-        <img class="header__logo" src="images/teapot.png" alt="急須">
-        <h1>Freshness Control</h1>
-    </header>
-
     <div class="c-btn--hamburger">
       <i class="fas fa-bars header__icon"></i>
+      <p>MENU</p>
     </div>
+
+    <header class="l_header">
+        <img class="header__logo" src="images/teapot.png" alt="急須">
+        <h1>KEEP FRESH</h1>
+    </header>
+
+    
 
     <div class="l_sidebar">
       <div class="l_sidebar__inner">
@@ -31,7 +34,7 @@
         
           <form class="input_form" action="input.php" method="post">
             <input type="text" name="name" placeholder="品名" required>
-            <input type="text" name="quantity" placeholder="数量" required>
+            <input type="text" name="quantity" placeholder="数" required>
             <input type="date" name="date" placeholder="賞味期限" required>
             <input type="text" name="store"  placeholder="店舗" required><br> 
            <!-- ボタン -->
@@ -51,7 +54,7 @@
           require('connect.php'); 
 
           $items = $pdo->query('SELECT * FROM items ORDER BY date');
-          print('<tr>' . '<th>品名</th>' .'<th>数量</th>'.'<th>賞味期限</th>'.'<th>店舗</th>'.'<th>残り日数</th>'.'</tr>');
+          print('<tr>' . '<th>品名</th>' .'<th>数</th>'.'<th>賞味期限</th>'.'<th>店舗</th>'.'<th>残り</th>'.'</tr>');
           ?>
 
           <?php while ($item = $items->fetch()): ?>

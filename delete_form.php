@@ -14,47 +14,43 @@
 </script>
 <body>
   
-  <div class="wrapper">
+  <div class="l_wrapper">
 
     <header>
         <img class="header__logo" src="images/teapot.png" alt="急須">
-        <h1>Freshness Control</h1>
+        <h1>KEEP FRESH</h1>
     </header>
     
     <div class="l_contents">
-      <a class="contents__list">item list</a>
 
       <article>
         <table>
           <?php
           require('connect.php'); 
-
           $items = $pdo->query('SELECT * FROM items ORDER BY date');
-  
           ?>
+           <table>
+                <tr>
+                  <th>id</th>
+                  <th>品名</th>
+                  <th>数</th>
+                  <th>賞味期限</th>
+                  <th>店舗</th>
+                  <th></th>
+                  <th></th>
+                </tr>
 
           <?php while ($item = $items->fetch()): ?>
           
             <?php        
-            //指定日時
-            date_default_timezone_set('Asia/Tokyo');
-            $today = new Datetime('now');
-            $limit = new Datetime($item['date']);
-            $interval = $limit->diff($today);
-            $expiration_date = $interval->format('%a日');
-            
-          
+              // タイムスタンプを取得
+              $timestamp_limit = strtotime($item['date']);
+              // 現在のタイムスタンプを取得
+              $timestamp_today = strtotime('now');                  
+              // 経過日を取得して小数点切り捨て (1日 = 60秒 x 60分 x 24時間)
+              $interval =  floor(($timestamp_limit - $timestamp_today) / (60 * 60 * 24)); 
             ?>
             
-              <table>
-                <tr>
-                  <th>id</th>
-                  <th>品名</th>
-                  <th>数量</th>
-                  <th>賞味期限</th>
-                  <th>店舗</th>
-                  <th>残り日数</th>
-                </tr>
                 <form method="post" action="delete.php">
                 <tr>
                   <td><?php if( !empty($item['id']) ){ print($item['id']); } ?></td>
@@ -62,19 +58,18 @@
                   <td><input type="text" name="quantity" value="<?php if( !empty($item['quantity']) ){ print($item['quantity']); } ?>" disabled></td>
                   <td><input type="text" name="date" value="<?php if( !empty($item['date']) ){ print($item['date']); } ?>" disabled></td>
                   <td><input type="text" name="store" value="<?php if( !empty($item['store']) ){ print($item['store']); } ?>" disabled></td>
-                  <td><?php print($expiration_date); ?></td>
+
+                  <td><a href="index.php"><button type="button" class="c-btn">取消</button></a></td>
+                  <td><button type="submit" class="c-btn c-btn--delete">削除</button></td>
+                  <input type="hidden" name="id" value="<?php print($item['id']) ?>">
+                  <input type="hidden" name="name" value="<?php print($item['name']) ?>">
+                  <input type="hidden" name="quantity" value="<?php print($item['quantity']) ?>">
+                  <input type="hidden" name="date" value="<?php print($item['date']) ?>">
+                  <input type="hidden" name="store" value="<?php print($item['store']) ?>">
                 </tr>
-                
-              </table>
-            <a href="index.php"><button type="button" class="c-btn">キャンセル</button></a>
-            <input type="hidden" name="id" value="<?php print($item['id']) ?>">
-            <input type="hidden" name="name" value="<?php print($item['name']) ?>">
-            <input type="hidden" name="quantity" value="<?php print($item['quantity']) ?>">
-            <input type="hidden" name="date" value="<?php print($item['date']) ?>">
-            <input type="hidden" name="store" value="<?php print($item['store']) ?>">
-            <button type="submit" class="c-btn c-btn--delete">削除</button>
             </form>
           <?php endwhile; ?>
+          </table>
       </article>
     </div>
 
