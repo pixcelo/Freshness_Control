@@ -5,10 +5,9 @@
       <article>
         
           <?php
-          require('connect.php'); 
           $items = $pdo->query('SELECT * FROM items ORDER BY date');
           ?>
-           <table>
+           <table class="c-table">
                 <tr>
                   <th>id</th>
                   <th>品名</th>

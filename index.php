@@ -3,10 +3,8 @@
     <div class="l_contents">
 
       <article>
-        <table>
+      <table class="c-table">
           <?php
-          require('connect.php'); 
-
           $items = $pdo->query('SELECT * FROM items ORDER BY date');
           print('<tr>' . '<th>品名</th>' .'<th>数</th>'.'<th>賞味期限</th>'.'<th>店舗</th>'.'<th>残り</th>'.'</tr>');
           ?>

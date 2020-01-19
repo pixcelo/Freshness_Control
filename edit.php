@@ -3,12 +3,11 @@
     <div class="l_contents">
 
       <article>
-        
+      
           <?php
-          require('connect.php'); 
           $items = $pdo->query('SELECT * FROM items ORDER BY date');
           ?>
-          <table>
+          <table class="c-table">
             <tr>
               <th>id</th>
               <th>品名</th>
@@ -32,10 +31,10 @@
               <form method="post" action="update.php">
               <tr>
                 <td><?php if( !empty($item['id']) ){ print($item['id']); } ?></td>
-                <td><input type="text" name="name" value="<?php if( !empty($item['name']) ){ print($item['name']); } ?>"></td>
-                <td><input type="text" name="quantity" value="<?php if( !empty($item['quantity']) ){ print($item['quantity']); } ?>"></td>
-                <td><input type="text" name="date" value="<?php if( !empty($item['date']) ){ print($item['date']); } ?>" ></td>
-                <td><input type="text" name="store" value="<?php if( !empty($item['store']) ){ print($item['store']); } ?>" ></td>
+                <td><input type="text" name="name" value="<?php if( !empty($item['name']) ){ print $item['name']; } ?>"></td>
+                <td><input type="text" name="quantity" value="<?php if( !empty($item['quantity']) ){ print $item['quantity']; } ?>"></td>
+                <td><input type="text" name="date" value="<?php if( !empty($item['date']) ){ print $item['date']; } ?>" ></td>
+                <td><input type="text" name="store" value="<?php if( !empty($item['store']) ){ print $item['store']; } ?>" ></td>
                 <td><a href="index.php"><button type="button" class="c-btn">取消</button></a></td>
                 <td><button type="submit" class="c-btn c-btn--update">更新</button></td>
                 <input type="hidden" name="id" value="<?php print($item['id']) ?>">

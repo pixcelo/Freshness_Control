@@ -1,3 +1,8 @@
+<?php 
+  require('connect.php'); 
+  require('function.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -20,23 +25,24 @@
     </div>
 
     <header class="l_header">
-        <h1>KEEP FRESH</h1>
+        <h1><a href="index.php">KEEP FRESH</a></h1>
     </header>
 
     <div class="l_sidebar">
       <div class="l_sidebar__inner">
       <p>input form</p>
       <i class="fas fa-times-circle l_sidebar__icon"></i>
-      </div>
-        
-          <form action="input.php" method="post">
-            <input type="text" name="name" placeholder="品名" required>
-            <input class="js-updown" type="number" name="quantity" placeholder="数" required>
-            <input type="date" name="date" placeholder="賞味期限" required>
-            <input type="text" name="store"  placeholder="店舗" required><br> 
-            <button type="submit" class="c-btn c-btn--input">登録</button><br><br>
-          </form>
-          <a href="edit.php"><button type="submit" class="c-btn c-btn--update">更新</button></a><br><br>
-          <a href="delete_form.php"><button type="submit" class="c-btn c-btn--delete">削除</button></a>
     </div>
-    <div class="l_sidebar-bg"></div>
+
+        <form action="input.php" method="post">
+          <input type="text" name="name" placeholder="品名" required>
+          <input class="js-updown" type="number" name="quantity" placeholder="数" required>
+          <input type="date" name="date" placeholder="賞味期限" required>
+          <input type="text" name="store"  placeholder="店舗" required><br> 
+          <button type="submit" class="c-btn c-btn--input">登録</button><br><br>
+        </form>
+        <a href="edit.php"><button type="submit" class="c-btn c-btn--update">更新</button></a><br><br>
+        <a href="delete_form.php"><button type="submit" class="c-btn c-btn--delete">削除</button></a>
+    </div>
+  <div class="l_sidebar-bg"></div>
+
