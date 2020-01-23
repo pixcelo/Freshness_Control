@@ -1,6 +1,7 @@
-<?php require('header.php'); ?>
+<?php require('header.php');
+      require('function.php'); ?>
     
-    <div class="l_contents">
+    <div class="l-contents">
 
       <article>
         

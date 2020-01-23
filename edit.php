@@ -1,9 +1,9 @@
-<?php require('header.php'); ?>
+<?php require('header.php');
+      require('function.php'); ?>
 
     <div class="l_contents">
 
-      <article>
-      
+      <article class="l-contents__item">
           <?php
           $items = $pdo->query('SELECT * FROM items ORDER BY date');
           ?>
@@ -39,9 +39,9 @@
                 <td><button type="submit" class="c-btn c-btn--update">更新</button></td>
                 <input type="hidden" name="id" value="<?php print($item['id']) ?>">
               </tr>
-        </form>
-      <?php endwhile; ?>
-      </table>
+              </form>
+            <?php endwhile; ?>
+          </table>
       </article>
     </div>
 

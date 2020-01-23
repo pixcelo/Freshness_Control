@@ -1,35 +1,48 @@
-.l_wrapper {
-  width: 960px;
+body {
+  font-family: 'Andale Mono','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+.l-wrapper {
   margin: 0 auto;
 }
 
-.l_header {
+.l-header {
   display: flex;
+  color: #8EBF5E;
+  background-color: #E1F2A2;
+  padding: 10px;
 }
 
-.header__logo {
-  display: block;
-  width: 54px;
-  height: 59px;
-  margin: 8px 16px;
+.l-header__title {
+  color: #8EBF5E;
+  cursor: pointer;
 }
 
-.l_sidebar {
-float: left;
-width: 198px;
-height: 498px;
-margin: 10px 10px 10px 0px;
+a {
+  text-decoration: none;
+  color: #8EBF5E;
+}
+
+.l-sidebar {
+  width: 198px;
+  height: 498px;
+  margin: 10px 10px 10px 0px;
 }
 
 input {
   margin-bottom: 8px;
+  background-color: whitesmoke;
 }
 
-.l_contents {
-float: left;
-width: 748px;
-height: 498px;
-margin-bottom: 50px;
+.l-contents {
+  width: 100%;
+  height: 498px;
+  margin: 0 10px;
 }
 
 /* テーブル */
@@ -48,10 +61,9 @@ table th {
 }
 
 table td {
-  padding: 3px 10px
+  padding: 5px;
+  font-size: 16px;
 }
- 
-
 /* テーブルここまで */
 
 /* ボタン */
@@ -66,6 +78,7 @@ table td {
   display: inline-block;
   font-size: 12px;
   border-radius: 4px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .c-btn--delete {
@@ -76,10 +89,10 @@ table td {
   background-color: skyblue;
 }
 
-.header__icon {
+.js-header__icon {
   font-size: 40px;
 }
-.header__icon+p {
+.js-header__icon+p {
   font-size: 60%;
 }
 
@@ -89,12 +102,12 @@ table td {
   
 /* サイドバー */
 
-.l_sidebar {
+.l-sidebar {
   padding:16px;
   width:220px;
   height:100vh;
   position:fixed;
-  background-color:#fff;
+  background-color: #fff;
   top:0;
   left:-220px;
   z-index:4;
@@ -103,23 +116,24 @@ table td {
   display:none;
 }
 
-.l_sidebar__inner {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.l-sidebar__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.l_sidebar__icon {
-  font-size:28px;
-  color:#654;
+.l-sidebar__icon {
+  font-size: 28px;
+  color: #654;
 }
 
-.l_sidebar__txt {
-  font-size:18px;
-  margin-top:16px;
-  margin-left:8px;
+.l-sidebar__txt {
+  font-size: 18px;
+  margin-top: 16px;
+  margin-left: 8px;
 }
-.l_sidebar-bg {
+
+.l-sidebar-bg {
   background-color:#558;
   width:100vw;
   height:100vh;
@@ -131,15 +145,62 @@ table td {
   display:none;
 }
 
+/* .fa-bars {
+  padding-right: 20px;
+} */
+
+.c-btn--hamburger {
+  width: 70px;
+  text-align: center;
+}
+
+/* 会員登録フォーム */
+.required {
+	background-color: #BB1850;
+	color: #fff;
+	font-size: 90%;
+	padding: 2px;
+	margin-left: 10px;
+}
+
+.error {
+	font-size: 90%;
+	color: #BB1850;
+}
+
 /* responsive */
 @media (max-width: 600px) {
 
-.l_wrapper{
-  max-width: 100%;
+body {
+  font-size: 
+} 
+
+.l-wrapper{
+  width: 100%;
 }
 
-.l_contents {
-  max-width: 100%;
-  }
+.l-contents {
+  width: 100%;
+}
+
+.c-table {
+  width: 100%;
+}
+
+.l-contents__item {
+  width: 100%;
+  color: red;
+}
+
+table th {
+  font-size: 0.5em;
+  padding: 5px;
+}
+
+table td {
+  /* 親要素の半分のサイズ */
+  padding: 0.5em;
+  font-size: 0.5em;
+}
 
 }
