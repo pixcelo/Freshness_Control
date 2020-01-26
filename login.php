@@ -49,7 +49,7 @@ if (!empty($_POST)) {
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<title>ログインする</title>
+<title>ログイン</title>
 </head>
 
 <body>
@@ -60,8 +60,8 @@ if (!empty($_POST)) {
   <div class="l-contents">
     <div id="lead">
       <p>メールアドレスとパスワードを記入してログインしてください。</p>
-      <p>入会手続きがまだの方はこちらからどうぞ。</p>
-      <p>&raquo;<a href="top.php">入会手続きをする</a></p>
+      <p>会員登録はコチラ</p>
+      <p>&raquo;<a href="top.php">会員登録する</a></p>
       <p>テストユーザー：test@test.com パスワード：12345678</p>
     </div>
     <form action="" method="post">
@@ -83,11 +83,11 @@ if (!empty($_POST)) {
         <dt>ログイン情報の記録</dt>
         <dd>
           <input id="save" type="checkbox" name="save" value="on">
-          <label for="save">次回からは自動的にログインする</label>
+          <label for="save">自動ログイン</label>
         </dd>
       </dl>
       <div>
-        <input type="submit" value="ログインする" />
+        <input type="submit" value="ログイン" />
       </div>
     </form>
   </div>

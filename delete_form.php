@@ -1,8 +1,25 @@
-<?php require('header.php');
-      require('function.php'); ?>
+<?php 
+session_start();
+require('header.php');
+require('connect.php');
+require('function.php'); 
+
+  // ログインしているか確認
+  if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
+    $_SESSION['time'] = time();
+
+    $users = $pdo->prepare('SELECT * FROM users WHERE user_id=?');
+    $users->execute(array($_SESSION['user_id']));
+    $user = $users->fetch();
+  } else {
+    header('Location: login.php');
+    exit();
+  }
+
+?>
     
     <div class="l-contents">
-
+    <p><?php print h($user['name']); ?>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
       <article>
         
           <?php

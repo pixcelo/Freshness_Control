@@ -21,7 +21,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
     <div class="l-contents">
 
       <article>
-        <p><?php print h($user['name']); ?>さんでログイン中です。</p>
+        <p><?php print h($user['name']); ?>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
       <table class="c-table">
           <?php
           $items = $pdo->query('SELECT * FROM items ORDER BY date');
