@@ -4,7 +4,7 @@ require('header.php');
 require('connect.php');
 require('function.php'); 
 
-  // ログインしているか確認
+  // ログインしているか確認（セッション時間＝１時間）
   if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
     $_SESSION['time'] = time();
 
@@ -20,12 +20,17 @@ require('function.php');
 
     <div class="l-contents">
 
-      <article class="l-contents__item">
+      <article>
         <p><?php print h($user['name']); ?>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
+
+         <!-- ログインユーザーの商品情報を表示 -->
           <?php
-          $items = $pdo->query('SELECT * FROM items ORDER BY date');
+          $items = $pdo->prepare('SELECT * FROM items WHERE user_id=? ORDER BY date');
+          $items->execute(array($_SESSION['user_id']));
+          $item = $users->fetch();
           ?>
-          <table class="c-table">
+
+          <table>
             <tr>
               <th>id</th>
               <th>品名</th>
@@ -38,12 +43,12 @@ require('function.php');
             <?php while ($item = $items->fetch()): ?>
 
               <?php        
-                // タイムスタンプを取得
-                $timestamp_limit = strtotime($item['date']);
-                // 現在のタイムスタンプを取得
-                $timestamp_today = strtotime('now');                  
-                // 経過日を取得して小数点切り捨て (1日 = 60秒 x 60分 x 24時間)
-                $interval =  floor(($timestamp_limit - $timestamp_today) / (60 * 60 * 24)); 
+              // 賞味期限のタイムスタンプを取得
+              $timestamp_limit = strtotime($item['date']);
+              // 今日のタイムスタンプを取得
+              $timestamp_today = strtotime('now');                  
+              // 経過日を取得して小数点切り捨て (1日 = 60秒 x 60分 x 24時間)
+              $interval =  floor(($timestamp_limit - $timestamp_today) / (60 * 60 * 24)); 
               ?>
               
               <form method="post" action="update.php">

@@ -1,4 +1,4 @@
-<?php require('connect.php'); ?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -31,6 +31,7 @@
       </div>
 
         <form action="input.php" method="post">
+          <input type="hidden" name="user_id" value="<?php print($_SESSION['user_id']) ?>">
           <input type="text" name="name" placeholder="品名" required>
           <input type="number" name="quantity" placeholder="数" required>
           <input type="date" name="date" placeholder="賞味期限" required>

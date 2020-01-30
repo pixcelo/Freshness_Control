@@ -4,6 +4,7 @@ body {
   margin: 0;
 }
 
+
 h1 {
   margin: 0;
 }
@@ -202,15 +203,6 @@ body {
 
 .l-contents {
   width: 100%;
-}
-
-.c-table {
-  width: 100%;
-}
-
-.l-contents__item {
-  width: 100%;
-  color: red;
 }
 
 table th {
