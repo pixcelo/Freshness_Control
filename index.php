@@ -24,6 +24,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
 
       <article>
         <p><?php print h($user['name']); ?>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
+        <!-- <button>並び替え</button> -->
 
        <!-- ログインユーザーの商品情報を表示 -->
         <?php
@@ -32,7 +33,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         $item = $users->fetch();
         ?>
 
-        <table>
+        <table id="test">
           <tr>
             <th>品名</th>
             <th>数</th>
@@ -46,9 +47,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         // 賞味期限のタイムスタンプを取得
         $timestamp_limit = strtotime($item['date']);
         // 今日のタイムスタンプを取得
-        $timestamp_today = strtotime('now');                  
+        $timestamp_today = strtotime('today');
         // 経過日を取得して小数点切り捨て (1日 = 60秒 x 60分 x 24時間)
         $interval =  floor(($timestamp_limit - $timestamp_today) / (60 * 60 * 24)); 
+
 
         // テーブルの中身を表示
         echo '<tr>'.'<td>'.$item['name'].'</td>';
@@ -56,7 +58,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         echo '<td>'.$item['date'].'</td>';
         echo '<td>'.$item['store'].'</td>';
         // 残り45日以下ならアラートマークをつける
-        if ($interval < 45 ) { 
+        if ($interval <= 45 ) { 
           echo '<td>'.$interval.'日'.'<i class="fas fa-exclamation-triangle">'.'</td>'.'</tr>';
         } else { 
           echo '<td>'.$interval.'日'.'</td>'.'</tr>';
@@ -69,6 +71,9 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
       </article>
     </div>
   </div>
+  
+ <script>
 
+  </script>
 </body>
 </html>
