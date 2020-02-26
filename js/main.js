@@ -1,13 +1,13 @@
 // ハンバーガーボタン
 jQuery(document).ready(function(){
   /* open */
-  $('.header__icon').on('click',function(){
-    $('.l-sidebar').css('display','block').animate({
+  $('.js-product-input').on('click', function(){
+    $('.l-sidebar').css('display', 'block').animate({
       left:'0'
     }, 
       300
     );
-    $('.l-sidebar-bg').css('display','block').animate({
+    $('.l-sidebar-bg').css('display', 'block').animate({
       opacity:'0.5'
     },
       300
@@ -15,7 +15,7 @@ jQuery(document).ready(function(){
   });
 
   /* close */
-  $('.l-sidebar__icon').on('click',function(){
+  $('.l-sidebar__icon').on('click', function(){
     $('.l-sidebar').animate({
       left:'-200px'
     },
