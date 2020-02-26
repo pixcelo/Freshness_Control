@@ -17,11 +17,12 @@
   <div class="l-wrapper">
 
     <header class="l-header">
-      <div class="c-btn--hamburger">
-        <i class="fas fa-bars js-header__icon"></i>
-        <p class="c-btn-hamburger__menu">MENU</p>
-      </div>
       <h1 ckass="l-header__title"><a href="index.php">KEEP FRESH</a></h1>
+
+      <ul class="l-header--menu">
+        <li class="js-product-input">1.商品を登録する</li>
+        <li><a href="edit.php">2.商品情報を修正する</a></li>
+      </ul>
     </header>
 
     <div class="l-sidebar">
@@ -38,8 +39,6 @@
           <input type="text" name="store"  placeholder="店舗" required><br> 
           <button type="submit" class="c-btn c-btn--input">登録</button><br><br>
         </form>
-        <a href="edit.php"><button type="submit" class="c-btn c-btn--update">更新</button></a><br><br>
-        <a href="delete_form.php"><button type="submit" class="c-btn c-btn--delete">削除</button></a>
     </div>
   <div class="l-sidebar-bg"></div>
 

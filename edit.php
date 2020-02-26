@@ -39,6 +39,7 @@ require('function.php');
               <th>店舗</th>
               <th></th>
               <th></th>
+              <th></th>
             </tr>
             <?php while ($item = $items->fetch()): ?>
 
@@ -46,7 +47,7 @@ require('function.php');
               // 賞味期限のタイムスタンプを取得
               $timestamp_limit = strtotime($item['date']);
               // 今日のタイムスタンプを取得
-              $timestamp_today = strtotime('now');                  
+              $timestamp_today = strtotime('today');                  
               // 経過日を取得して小数点切り捨て (1日 = 60秒 x 60分 x 24時間)
               $interval =  floor(($timestamp_limit - $timestamp_today) / (60 * 60 * 24)); 
               ?>
@@ -58,11 +59,18 @@ require('function.php');
                 <td><input type="text" name="quantity" value="<?php if( !empty($item['quantity']) ){ print $item['quantity']; } ?>"></td>
                 <td><input type="text" name="date" value="<?php if( !empty($item['date']) ){ print $item['date']; } ?>" ></td>
                 <td><input type="text" name="store" value="<?php if( !empty($item['store']) ){ print $item['store']; } ?>" ></td>
+                
                 <td><a href="index.php"><button type="button" class="c-btn">取消</button></a></td>
                 <td><button type="submit" class="c-btn c-btn--update">更新</button></td>
                 <input type="hidden" name="id" value="<?php print($item['id']) ?>">
+                </form>
+
+                <form method="post" action="delete.php">
+                <td><button type="submit" class="c-btn c-btn--delete">削除</button></td>
+                <input type="hidden" name="id" value="<?php print($item['id']) ?>">
+                </form>
               </tr>
-              </form>
+             
             <?php endwhile; ?>
           </table>
       </article>
