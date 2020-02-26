@@ -4,6 +4,10 @@ body {
   margin: 0;
 }
 
+ul {
+  padding: 0;
+}
+
 
 h1 {
   margin: 0;
@@ -14,7 +18,6 @@ h1 {
 }
 
 .l-header {
-  display: flex;
   color: #8EBF5E;
   background-color: #E1F2A2;
   padding: 10px;
@@ -23,6 +26,17 @@ h1 {
 
 .l-header__title {
   color: #8EBF5E;
+  cursor: pointer;
+}
+
+.l-header--menu {
+  display: flex;
+  list-style: none;
+}
+
+.l-header--menu li {
+
+  margin-right: 10px;
   cursor: pointer;
 }
 

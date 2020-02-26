@@ -23,7 +23,7 @@
     header('Location:input_completed.php');
     exit();
 
-    } catch(PDOException $e) {
+    } catch(Exception $e) {
 
     echo 'DB挿入エラー: ' . $e->getMessage();
     var_dump($e);
