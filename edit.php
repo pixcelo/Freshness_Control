@@ -7,11 +7,12 @@ require('function.php');
   // ログインしているか確認（セッション時間＝１時間）
   if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
     $_SESSION['time'] = time();
-
     $users = $pdo->prepare('SELECT * FROM users WHERE user_id=?');
     $users->execute(array($_SESSION['user_id']));
     $user = $users->fetch();
+
   } else {
+    // ログインしていなけばログイン画面に飛ばす
     header('Location: login.php');
     exit();
   }
@@ -47,7 +48,8 @@ require('function.php');
               // 賞味期限のタイムスタンプを取得
               $timestamp_limit = strtotime($item['date']);
               // 今日のタイムスタンプを取得
-              $timestamp_today = strtotime('today');                  
+              $now = date('Y/m/d');
+              $timestamp_today = strtotime($now);
               // 経過日を取得して小数点切り捨て (1日 = 60秒 x 60分 x 24時間)
               $interval =  floor(($timestamp_limit - $timestamp_today) / (60 * 60 * 24)); 
               ?>

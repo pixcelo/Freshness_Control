@@ -3,20 +3,33 @@
     require('function.php'); 
     
     // 入力値と登録ユーザーのidを取得
-    $user_id = h($_POST['user_id']);
-    $name = h($_POST['name']);
+    $user_id  = h($_POST['user_id']);
+    $name     = h($_POST['name']);
     $quantity = h($_POST['quantity']);
-    $date = h($_POST['date']);
-    $store = h($_POST['store']);
+    $date     = h($_POST['date']);
+    $store    = h($_POST['store']);
 
     try {
 
     $stmt = $pdo->prepare('INSERT INTO items (user_id, name, quantity, date, store) VALUES (:user_id, :name, :quantity, :date, :store)');
 
+    // 名前付けされたプレースホルダを用いてプリペアドステートメントを実行
+    $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+    $stmt->bindValue(':quantity', $quantity, PDO::PARAM_INT);
+    $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+    $stmt->bindValue(':store', $store, PDO::PARAM_STR);
+
     // 挿入する値を配列に格納
-    $params = array(':user_id' => $user_id, ':name' => $name, ':quantity' => $quantity, ':date' => $date, ':store' => $store);
+    $params = array(
+        ':user_id'  => $user_id,
+        ':name'     => $name,
+        ':quantity' => $quantity,
+        ':date'     => $date,
+        ':store'    => $store
+    );
     
-    //挿入する値が入った変数をexecuteにセットしてSQLを実行
+    // 挿入する値が入った変数をexecuteにセットしてSQLを実行
     $stmt->execute($params); 
 
     // リダイレクト

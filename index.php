@@ -7,13 +7,12 @@ require('function.php');
 // ログインしているか確認（セッション時間＝１時間）
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
   $_SESSION['time'] = time();
-
   $users = $pdo->prepare('SELECT * FROM users WHERE user_id=?');
   $users->execute(array($_SESSION['user_id']));
   $user = $users->fetch();
-
-  // ログインしていなけばログイン画面に飛ばす
+  
 } else {
+  // ログインしていなけばログイン画面に飛ばす
   header('Location: login.php');
   exit();
 }
@@ -63,6 +62,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         }
       
         $items = $pdo->prepare($sql);
+
+        // bind 与えられた変数や数値に型を指定してパラメータに入れる（SQLインジェクション対策）
+        $users->bindValue(':name', $name, PDO::PARAM_STR);
+        $users->bindValue(':store', $store, PDO::PARAM_STR);
 
         echo '<pre>';
         var_dump("SQL文：".$sql);
