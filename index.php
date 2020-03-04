@@ -24,14 +24,54 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
 
       <article>
         <p><?php print h($user['name']); ?>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
-        <!-- <button>並び替え</button> -->
+        <table>
+          <tr>
+            <th>品名</th>
+            <th>店舗</th>
+            <th></th>
+          </tr>
+         
+          <tr>
+            <form action="" method="POST">
+            <td><input type="text" name="name"></td>
+            <td><input type="text" name="store"></td>
+            <td><input class="c-btn"  type="submit" name="search" value="検索する"></td>
+          </tr>
+        </form>
 
-       <!-- ログインユーザーの商品情報を表示 -->
         <?php
-        $items = $pdo->prepare('SELECT * FROM items WHERE user_id=? ORDER BY date');
-        $items->execute(array($_SESSION['user_id']));
-        $item = $users->fetch();
+       
+        // 検索機能
+        if (isset($_POST['search'])) {
+          $sql = "SELECT * FROM items ";
+        }
+
+        if (empty($_POST['name']) && empty($_POST['store'])) {
+          $sql = "SELECT * FROM items ORDER BY date";
+        }
+          
+        // 品名検索
+        if (!empty($_POST['name'])) {
+          $name = $_POST['name'];
+          $sql .= "WHERE name LIKE '%{$name}%' ORDER BY date";
+        }
+
+        // 店舗検索
+        if (!empty($_POST['store'])){
+          $store = $_POST['store'];
+          $sql .= "WHERE store LIKE '%{$store}%' ORDER BY date";
+        }
+      
+        $items = $pdo->prepare($sql);
+
+        echo '<pre>';
+        var_dump("SQL文：".$sql);
+        echo '</pre>';
+        
+        $items->execute();
         ?>
+
+        </table>
 
         <table id="test">
           <tr>
@@ -72,8 +112,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
     </div>
   </div>
   
- <script>
-
-  </script>
+<script>
+</script>
 </body>
 </html>
