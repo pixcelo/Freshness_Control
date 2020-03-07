@@ -42,7 +42,6 @@ if ($_REQUEST['action'] == 'rewrite' && isset($_SESSION['join'])) {
     $_POST = $_SESSION['join'];
 }
 
-// var_dump($_POST);
 ?>
 
 <!DOCTYPE html>

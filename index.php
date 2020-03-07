@@ -2,7 +2,7 @@
 session_start();
 require('connect.php');
 require('header.php');
-require('function.php'); 
+require('function.php');
 
 // ログインしているか確認（セッション時間＝１時間）
 if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
@@ -23,6 +23,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
 
       <article>
         <p><?php print h($user['name']); ?>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
+
+        <!-- 検索フォーム -->
         <table>
           <tr>
             <th>品名</th>
@@ -35,11 +37,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
             <td><input type="text" name="name"></td>
             <td><input type="text" name="store"></td>
             <td><input class="c-btn"  type="submit" name="search" value="検索する"></td>
+            </form>
           </tr>
-        </form>
 
         <?php
-       
         // 検索機能
         if (isset($_POST['search'])) {
           $sql = "SELECT * FROM items ";
@@ -116,7 +117,5 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
     </div>
   </div>
   
-<script>
-</script>
 </body>
 </html>
