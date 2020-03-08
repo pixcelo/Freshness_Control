@@ -11,8 +11,8 @@ if (!isset($_SESSION['join'])) {
 
 // $_POSTの値があれば、データベースに登録内容を保存する
 if(!empty($_POST)) {
-  $statement = $pdo->prepare('INSERT INTO users SET name=?, email=?, password=?, created=NOW()');
-  $statement->execute(array(
+  $stmt = $pdo->prepare('INSERT INTO users SET name=?, email=?, password=?, created=NOW()');
+  $stmt->execute(array(
     $_SESSION['join']['name'],
     $_SESSION['join']['email'],
     // パスワードは暗号化する

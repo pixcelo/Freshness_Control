@@ -22,7 +22,7 @@ require('function.php');
     <div class="l-contents">
 
       <article>
-        <p><?php print h($user['name']); ?>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
+        <p><span class="login_name"><?php print h($user['name']); ?></span>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
 
          <!-- ログインユーザーの商品情報を表示 -->
           <?php

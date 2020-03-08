@@ -1,6 +1,7 @@
 body {
   font-family: 'Andale Mono','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
   color: #333333;
+  font-size: 12px;
   margin: 0;
 }
 
@@ -35,7 +36,6 @@ h1 {
 }
 
 .l-header--menu li {
-
   margin-right: 10px;
   cursor: pointer;
 }
@@ -49,11 +49,6 @@ a {
   width: 198px;
   height: 498px;
   margin: 10px 10px 10px 0px;
-}
-
-input {
-  margin-bottom: 8px;
-  background-color: whitesmoke;
 }
 
 .l-contents {
@@ -75,7 +70,7 @@ table th, table td {
 }
 
 table th {
-  padding: 10px;
+  padding: 5px;
   background: #68CD8C;
   color: #fff;
 }
@@ -85,6 +80,11 @@ table td {
   font-size: 16px;
 }
 /* テーブルここまで */
+
+/* ユーザーネーム */
+.login_name {
+  font-weight: 700;
+}
 
 /* ボタン */
 .c-btn {
@@ -99,6 +99,7 @@ table td {
   font-size: 12px;
   border-radius: 4px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
 }
 
 .c-btn--delete {
@@ -208,8 +209,8 @@ input:focus {
 @media (max-width: 600px) {
 
 body {
-  font-size: 
-} 
+  font-size:
+}
 
 .l-wrapper{
   width: 100%;

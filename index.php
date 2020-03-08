@@ -11,6 +11,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
   $users->execute(array($_SESSION['user_id']));
   $user = $users->fetch();
   
+  
+  
 } else {
   // ログインしていなけばログイン画面に飛ばす
   header('Location: login.php');
@@ -22,7 +24,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
     <div class="l-contents">
 
       <article>
-        <p><?php print h($user['name']); ?>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
+        <p><span class="login_name"><?php print h($user['name']); ?></span>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
 
         <!-- 検索フォーム -->
         <table>
@@ -43,42 +45,46 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
         <?php
         // 検索機能
         if (isset($_POST['search'])) {
-          $sql = "SELECT * FROM items ";
-        }
-
-        if (empty($_POST['name']) && empty($_POST['store'])) {
-          $sql = "SELECT * FROM items ORDER BY date";
-        }
+          $user_id = $_SESSION['user_id'];
           
-        // 品名検索
-        if (!empty($_POST['name'])) {
-          $name = $_POST['name'];
-          $sql .= "WHERE name LIKE '%{$name}%' ORDER BY date";
-        }
+          // 全検索
+          if (empty($_POST['name']) && empty($_POST['store'])) {
+            $sql = "SELECT * FROM items WHERE user_id=? ORDER BY date";
+            
+          }
+            
+          // 品名検索
+          if (!empty($_POST['name'])) {
+            $name = $_POST['name'];
+            $sql = "SELECT * FROM items WHERE user_id=? AND name LIKE '%{$name}%' ORDER BY date";
+          }
 
-        // 店舗検索
-        if (!empty($_POST['store'])){
-          $store = $_POST['store'];
-          $sql .= "WHERE store LIKE '%{$store}%' ORDER BY date";
+          // 店舗検索
+          if (!empty($_POST['store'])){
+            $store = $_POST['store'];
+            $sql = "SELECT * FROM items WHERE user_id=? AND store LIKE '%{$store}%' ORDER BY date";
+          }
         }
       
         $items = $pdo->prepare($sql);
 
         // bind 与えられた変数や数値に型を指定してパラメータに入れる（SQLインジェクション対策）
-        $users->bindValue(':name', $name, PDO::PARAM_STR);
-        $users->bindValue(':store', $store, PDO::PARAM_STR);
+        $items->bindValue(':name', $name, PDO::PARAM_STR);
+        $items->bindValue(':store', $store, PDO::PARAM_STR);
+        $items->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
         echo '<pre>';
         var_dump("SQL文：".$sql);
         echo '</pre>';
         
-        $items->execute();
+        $items->execute(array($_SESSION['user_id']));
         ?>
 
         </table>
 
         <table id="test">
           <tr>
+            <th>ユーザーID</th>
             <th>品名</th>
             <th>数</th>
             <th>賞味期限</th>
@@ -98,7 +104,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
 
 
         // テーブルの中身を表示
-        echo '<tr>'.'<td>'.$item['name'].'</td>';
+        echo '<tr>'.'<td>'.$item['user_id'].'</td>';
+        echo '<td>'.$item['name'].'</td>';
         echo '<td>'.$item['quantity'].'</td>';
         echo '<td>'.$item['date'].'</td>';
         echo '<td>'.$item['store'].'</td>';

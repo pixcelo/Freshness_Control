@@ -17,13 +17,6 @@
     //挿入する値が入った変数をexecuteにセットしてSQLを実行
     $stmt->execute($params); 
 
-    // var_dump($name);
-    // var_dump($quantity);
-    // var_dump($date);
-    // var_dump($store);
-    // var_dump($id);
-
-    // リダイレクト
     header('Location:index.php');
     exit();
 
