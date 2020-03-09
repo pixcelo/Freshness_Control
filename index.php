@@ -17,13 +17,63 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
   exit();
 }
 
+// 検索機能
+if (isset($_POST['search'])) {
+  $user_id = $_SESSION['user_id'];
+  
+  // 全件検索
+  if (empty($_POST['name']) && empty($_POST['store'])) {
+    $sql = "SELECT * FROM items WHERE user_id=?";
+    
+  }
+
+  // 品名と店舗の検索
+  if (!empty($_POST['name']) && !empty($_POST['store'])) {
+    $name = $_POST['name'];
+    $store = $_POST['store'];
+    $sql = "SELECT * FROM items WHERE user_id=? AND name LIKE '%{$name}%' AND store LIKE '%{$store}%'";
+    
+  }
+    
+  // 品名検索
+  if (!empty($_POST['name']) && empty($_POST['store'])) {
+    $name = $_POST['name'];
+    $sql = "SELECT * FROM items WHERE user_id=? AND name LIKE '%{$name}%'";
+  }
+
+  // 店舗検索
+  if (!empty($_POST['store']) && empty($_POST['name'])){
+    $store = $_POST['store'];
+    $sql = "SELECT * FROM items WHERE user_id=? AND store LIKE '%{$store}%'";
+  }
+
+  // 昇順で日付を並び替え
+  $sql .= "ORDER BY date ASC";
+
+  $items = $pdo->prepare($sql);
+
+  //エスケープ処理（SQLインジェクション対策）
+  // bind 与えられた変数や数値に型を指定してパラメータに入れる
+  $items->bindValue(':name', $name, PDO::PARAM_STR);
+  $items->bindValue(':store', $store, PDO::PARAM_STR);
+  $items->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+
+  echo '<pre>';
+  var_dump("SQL文：".$sql);
+  echo '</pre>';
+  
+  $items->execute(array($_SESSION['user_id']));
+
+  // ヒット件数を表示
+  $count = $items->rowCount();
+  echo $count.'件のデータが登録されています。';
+}
+
 ?>
     
     <div class="l-contents">
-
       <div>
         <p><span class="login_name"><?php print h($user['name']); ?></span>さんでログイン中です。<span><a href="logout.php">ログアウトする</a></span></p>
-
         <!-- 検索フォーム -->
         <table>
           <tr>
@@ -38,50 +88,10 @@ if (isset($_SESSION['user_id']) && $_SESSION['time'] + 3600 > time()) {
             <td><input class="c-btn"  type="submit" name="search" value="検索する"></td>
             </form>
           </tr>
-          <?php
-          // 検索機能
-          if (isset($_POST['search'])) {
-            $user_id = $_SESSION['user_id'];
-            
-            // 全検索
-            if (empty($_POST['name']) && empty($_POST['store'])) {
-              $sql = "SELECT * FROM items WHERE user_id=? ORDER BY date";
-              
-            }
-              
-            // 品名検索
-            if (!empty($_POST['name'])) {
-              $name = $_POST['name'];
-              $sql = "SELECT * FROM items WHERE user_id=? AND name LIKE '%{$name}%' ORDER BY date";
-            }
+        </table>
 
-            // 店舗検索
-            if (!empty($_POST['store'])){
-              $store = $_POST['store'];
-              $sql = "SELECT * FROM items WHERE user_id=? AND store LIKE '%{$store}%' ORDER BY date";
-            }
-
-            $items = $pdo->prepare($sql);
-    
-            // bind 与えられた変数や数値に型を指定してパラメータに入れる（SQLインジェクション対策）
-            $items->bindValue(':name', $name, PDO::PARAM_STR);
-            $items->bindValue(':store', $store, PDO::PARAM_STR);
-            $items->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-    
-            echo '<pre>';
-            var_dump("SQL文：".$sql);
-            echo '</pre>';
-            
-            $items->execute(array($_SESSION['user_id']));
-
-            // ヒット件数を表示
-            $count = $items->rowCount();
-            echo $count.'件のデータが登録されています。';
-          }
-          ?>
-        </table><!-- 検索機能フォームここまで -->
-
-        <table id="test">
+        <!-- レコードの表示 -->
+        <table>
           <tr>
             <th>ユーザーID</th>
             <th>品名</th>
